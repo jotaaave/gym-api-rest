@@ -3,7 +3,16 @@ node_modules
 
 # Environment
 .env
+.eslintrc.json
 
 # Config
 package.json
 package-lock.json
+
+/src/generated/prisma
+
+# Database
+prisma
+
+
+
