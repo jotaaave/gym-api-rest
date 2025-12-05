@@ -5,20 +5,39 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+    provider = "prisma-client"
+    output   = "../src/generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
+    provider = "postgresql"
 }
 
 model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  name      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+    id           String   @id @default(uuid())
+    email        String   @unique
+    name         String
+    passwordHash String
+    createdAt    DateTime @default(now())
 
-  @@map("users")
+    @@map("users")
+}
+
+model CheckIn {
+    id          String    @id @default(uuid())
+    createdAt   DateTime  @default(now())
+    validatedAt DateTime?
+
+    @@map("check_ins")
+}
+
+model Gym {
+    id          String  @id @default(uuid())
+    title       String
+    description String?
+    phone       String?
+    latitude    Decimal
+    longitude   Decimal
+
+    @@map("gyms")
 }
