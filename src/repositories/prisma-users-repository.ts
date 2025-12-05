@@ -1,0 +1,15 @@
+import type { UserCreateInput } from "@/generated/prisma/models.js";
+import { prisma } from "@/lib/prisma.js";
+import type { UsersRepository } from "./types/users-repository.js";
+
+export class PrismaUsersRepository implements UsersRepository {
+	async create(data: UserCreateInput) {
+		const user = await prisma.user.create({ data })
+
+		return user
+	}
+
+	findByEmail(email: string): boolean {
+		throw new Error("Method not implemented.");
+	}
+}
